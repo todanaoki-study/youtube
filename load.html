@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax</title>
+    <style>
+        iframe {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="load">
+        <h2>Ajax</h2>
+        <iframe src="./info.html" frameborder="0"></iframe>
+    </div>
+
+    <button id="load">再読み込み（非同期）</button>
+
+    <div>
+        <h2>Reload</h2>
+        <iframe src="./info.html" frameborder="0"></iframe>
+    </div>
+    <button id="reload">再読み込み（リロード）</button>
+
+    <script>
+        let ajaxload = function () {
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener('load', function () {
+                document.querySelector('.load iframe').src = './info.html';
+                console.log(xhr.responseXML.body.innerHTML);
+            });
+            xhr.open('GET', 'info.html');
+            xhr.responseType = 'document';
+            xhr.send();
+        };
+
+        document.querySelector('#reload').addEventListener('click', function () {
+            //リロード
+            location.reload();
+        });
+        document.querySelector('#load').addEventListener('click', function () {
+            //非同期
+            ajaxload();
+        });
+    </script>
+</body>
+
+</html>
