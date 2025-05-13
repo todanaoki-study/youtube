@@ -1,0 +1,181 @@
+@charset "utf-8";
+
+@mixin mix-flex($a: center, $j: space-between) {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: $j;
+    align-items: $a;
+}
+
+@mixin mix-inner($w: 60%, $mw: 1200px) {
+    width: $w;
+    max-width: $mw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body {
+    width: 100%;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.header {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding: 10px 0;
+    background: #2c2c2c;
+    color: #fff;
+
+    &__inner {
+        @include mix-inner;
+    }
+}
+
+.video {
+    display: block;
+    width: 100%;
+    margin: 100px 0;
+
+    &__inner {
+        @include mix-inner;
+    }
+
+    &__img {
+        display: block;
+        margin: 0 auto;
+
+    }
+}
+
+.search {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+
+    &__inner {
+        @include mix-inner(90%);
+    }
+
+    &__form {
+        width: 100%;
+        @include mix-flex();
+    }
+
+    &__box {
+        display: block;
+        width: 80%;
+        margin-right: 10px;
+        padding: 5px 10px;
+        border: 1px solid #333;
+        border-radius: 5px;
+    }
+
+    &__btn {
+        display: block;
+        width: 15%;
+        border: 1px solid #333;
+        border-radius: 5px;
+        padding: 5px 10px;
+
+        text-align: center;
+        letter-spacing: 1.1rem;
+        box-shadow: 0px 2px 2px 0px rgba(193, 193, 193, 0.5), inset 0px -3px 6px -2px rgba(0, 0, 0, 0.3);
+
+        transition: .3s;
+
+        &:hover {
+            transform: scale(1.03);
+            cursor: pointer;
+        }
+    }
+
+    &__list {
+        @include mix-flex();
+        flex-wrap: wrap;
+        background: rgba($color: #333, $alpha: .8);
+        position: absolute;
+
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: 90%;
+        margin: 0 auto;
+
+        color: #fff;
+        padding: 10px;
+    }
+
+    &__item {
+        width: 30%;
+        margin-bottom: 45px;
+        transition: .3s;
+
+        &:hover {
+            transform: scale(1.03);
+            cursor: pointer;
+
+            & .search__title {
+                color: #0066c0;
+            }
+        }
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    &__title {
+        text-align: center;
+        transition: .3s;
+
+        font-size: 14px;
+    }
+}
+
+.selection {
+    display: block;
+    width: 100%;
+    height: 50px;
+}
+
+.controls {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.controls li {
+    border: 1px solid #2c2c2c;
+    padding: 5px 10px;
+    border-radius: 3px;
+    box-shadow: -5px -5px 10px 0px rgba(255, 255, 255, 0.5), 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+li {
+    width: fit-content;
+    margin-left: 20px;
+}
+
+.close {
+    display: none;
+
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    background: #fff;
+}
+
+//todo api作り直しとcloseのnoneの調整段階で終了
