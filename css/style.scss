@@ -49,8 +49,16 @@ img {
     &__img {
         display: block;
         margin: 0 auto;
-
     }
+}
+
+iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    margin: 0 auto;
+    object-fit: cover;
 }
 
 .search {
@@ -59,7 +67,7 @@ img {
     margin-top: 20px;
 
     &__inner {
-        @include mix-inner(90%);
+        @include mix-inner();
     }
 
     &__form {
@@ -96,6 +104,7 @@ img {
     }
 
     &__list {
+        display: none;
         @include mix-flex();
         flex-wrap: wrap;
         background: rgba($color: #333, $alpha: .8);
@@ -141,32 +150,49 @@ img {
     }
 }
 
-.selection {
-    display: block;
-    width: 100%;
-    height: 50px;
-}
-
 .controls {
-    display: flex;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    &__inner {
+        @include mix-inner();
+        background: #333;
+        padding: 10px;
+    }
+
+    &__list {
+        @include mix-flex();
+
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__item {
+        list-style-type: none;
+        background: #fff;
+        padding: 5px 10px;
+        // border-radius: 5px;
+    }
+
+    &__img {
+        display: block;
+        width: 30px;
+        height: 30px;
+    }
 }
 
-li {
-    list-style-type: none;
-}
+.volume {
+    display: block;
+    background: #fff;
+    width: 100%;
+    padding: 10px;
 
-.controls li {
-    border: 1px solid #2c2c2c;
-    padding: 5px 10px;
-    border-radius: 3px;
-    box-shadow: -5px -5px 10px 0px rgba(255, 255, 255, 0.5), 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
-}
+    @include mix-flex(center, flex-start);
 
-li {
-    width: fit-content;
-    margin-left: 20px;
+    &__bar {
+        display: block;
+        height: 3px;
+        background: #333;
+        margin-left: 20px;
+    }
 }
 
 .close {
@@ -176,6 +202,29 @@ li {
     bottom: 5%;
     right: 5%;
     background: #fff;
+
+    padding: 10px;
+    border-radius: 5px;
 }
 
 //todo api作り直しとcloseのnoneの調整段階で終了
+
+.history {
+    display: block;
+
+    &__inner {
+        @include mix-inner();
+        background: #f0f0f0;
+        padding: 10px;
+    }
+
+    &__item {
+        font-size: 14px;
+        color: #333;
+        margin-left: 5px;
+
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+    }
+}

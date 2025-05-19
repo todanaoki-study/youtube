@@ -14,7 +14,9 @@
 
 <body>
     <header class="header">
-        <div class="header__inner">ようこそ</div>
+        <div class="header__inner">
+            <a href="#" onclick="window.location.reload(true)">ようこそ</a>
+        </div>
     </header>
 
     <main class="main">
@@ -26,8 +28,9 @@
                 </form>
 
                 <ul class="search__list" id="MovieId"></ul>
-
             </div>
+
+
         </section>
 
         <!-- 動画の領域 -->
@@ -41,35 +44,47 @@
             <span class="close__btn">検索を閉じる</span>
         </div>
 
-        <nav>
-            <ul class="controls">
-                <li id="doplay">再生</li>
-                <li id="dostop">停止</li>
-                <li id="dopause">一時停止</li>
-                <li id="mute">ミュート</li>
-                <li id="do10sNext">10秒先へ</li>
-                <li id="do10sPrev">10秒戻る</li>
-            </ul>
+        <nav class="controls">
+            <div class="controls__inner">
+                <ul class="controls__list">
 
-            <ul>
-                <li>
-                    <form id="doSpeed">
-                        <input type="radio" id="mslow" name="speed" value="0.25" />
-                        <label for="mslow">0.25</label>
-                        <input type="radio" id="slow" name="speed" value="0.5" />
-                        <label for="slow">0.5</label>
-                        <input type="radio" id="normal" name="speed" value="1.0" checked />
-                        <label for="normal">1</label>
-                        <input type="radio" id="hspeed" name="speed" value="1.5" />
-                        <label for="hspeed">1.5</label>
-                        <input type="radio" id="mhspeed" name="speed" value="2" />
-                        <label for="mhspeed">2</label>
-                    </form>
-                </li>
-            </ul>
-            <label>ボリューム<input type="range" min="0" max="100" name="volume" id="volume" value="50" />
-                <span id="volumeNum"></span>
-            </label>
+                    <li class="controls__item" id="doplay">
+                        <img class="controls__img" src="./img/play.png" alt="">
+                    </li>
+                    <li class="controls__item" id="dostop">
+                        <img class="controls__img" src="./img/stop-button.png" alt="">
+                    </li>
+                    <li class="controls__item" id="dopause">
+                        <img class="controls__img" src="./img/pause.png" alt="">
+                    </li>
+                    <li class="controls__item" id="mute">
+                        <img class="controls__img" src="./img/volume-mute.png" alt="">
+                    </li>
+
+                    <li class="controls__item" id="do10sNext">10秒先へ</li>
+                    <li class="controls__item" id="do10sPrev">10秒戻る</li>
+                </ul>
+                <ul class="controls__list">
+                    <li class="controls__item">
+                        <form id="doSpeed">
+                            <input type="radio" id="mslow" name="speed" value="0.25" />
+                            <label for="mslow">0.25</label>
+                            <input type="radio" id="slow" name="speed" value="0.5" />
+                            <label for="slow">0.5</label>
+                            <input type="radio" id="normal" name="speed" value="1.0" checked />
+                            <label for="normal">1</label>
+                            <input type="radio" id="hspeed" name="speed" value="1.5" />
+                            <label for="hspeed">1.5</label>
+                            <input type="radio" id="mhspeed" name="speed" value="2" />
+                            <label for="mhspeed">2</label>
+                        </form>
+                    </li>
+                </ul>
+                <label class="volume">ボリューム
+                    <input class="volume__bar" type="range" min="0" max="100" name="volume" id="volume" value="50" />
+                    <span id="volumeNum"></span>
+                </label>
+            </div>
         </nav>
     </main>
 

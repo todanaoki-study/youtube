@@ -11,8 +11,6 @@ let youtubeId = "1XNKT-0za7E";
 var player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        height: '360',
-        width: '640',
         videoId: youtubeId,
         playerVars: {
             playsinline: 1,
@@ -128,7 +126,6 @@ speedBtn.addEventListener('change', function () {
 });
 
 
-
 function onPlayerReady(event) {
     event.target.playVideo();
 }
@@ -156,9 +153,10 @@ movieid.addEventListener('change', function () {
 
 //検索関数の定義
 const selectVideo = document.querySelector(".search__list");
+selectVideo.style.display = "none"; // 検索結果を非表示
 
 function ytSearch(val) {
-    const key = 'AIzaSyCSN2ix1RraHhb7G7bqu1-7KHeRmB9kWIw'; //自分のキーに書き換えます。
+    const key = 'AIzaSyCybbclXaPz6EmjonbiyLUPT8Y332j4hiU'; //自分のキーに書き換えます。
     const num = 10;
     const part = 'snippet';
     const type = 'video';
@@ -169,6 +167,7 @@ function ytSearch(val) {
         .then((data) => data.json())
         .then((obj) => {
             //検索した単語を予測に出す
+            console.log("通過");
             selectVideo.innerHTML = "";
             for (let movie of obj.items) {
 
@@ -202,6 +201,7 @@ function ytSearch(val) {
                     player.destroy(); // プレイヤーを削除
                     onYouTubeIframeAPIReady(); // プレイヤーを再初期化
                     selectVideo.style.display = "none"; // 検索結果を表示
+                    closeBtn.style.display = "none"; //閉じるボタンを表示
                 });
             }
         });
@@ -209,11 +209,22 @@ function ytSearch(val) {
 
 //検索時実行
 const ytSearchBtn = document.querySelector('#searchBtn');
+const closeBtn = document.querySelector('.close');
+
 ytSearchBtn.addEventListener('click', function (e) {
     //inputの値を持ってくる
     const ytSearchVal = document.querySelector('#ytSearch').value;
+    closeBtn.style.display = "block"; //閉じるボタンを表示
 
     e.preventDefault();
-    ytSearch(ytSearchVal);
     selectVideo.style.display = "flex"; // 検索結果を表示
+    ytSearch(ytSearchVal); //検索関数を実行
 });
+
+closeBtn.addEventListener('click', () => {
+    closeBtn.style.display = "none"; //閉じるボタンを非表示
+    selectVideo.style.display = "none"; // 検索結果を非表示
+});
+
+//todo apiの初期化
+//変更点はkeyの部分を2025-2の鍵に変更してます。
