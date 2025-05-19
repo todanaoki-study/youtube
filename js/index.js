@@ -167,7 +167,9 @@ function ytSearch(val) {
         .then((data) => data.json())
         .then((obj) => {
             //検索した単語を予測に出す
-            console.log("通過");
+            // console.log("通過");
+            console.log(obj);
+
             selectVideo.innerHTML = "";
             for (let movie of obj.items) {
 
