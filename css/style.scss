@@ -228,3 +228,40 @@ iframe {
         }
     }
 }
+
+.comment {
+    display: block;
+
+    &__title {
+        font-size: 20px;
+        color: #fff;
+        margin: 10px 0;
+        padding-left: 10px;
+    }
+
+    &__inner {
+        @include mix-inner();
+        background: #333;
+    }
+
+    &__list {
+        color: #fff;
+        padding: 10px;
+    }
+
+    &__item {
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        background: #444;
+        border-radius: 5px;
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        & a {
+            color: #0066c0;
+        }
+    }
+
+}

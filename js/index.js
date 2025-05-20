@@ -20,6 +20,9 @@ function onYouTubeIframeAPIReady() {
             onStateChange: onPlayerStateChange
         }
     });
+
+    getComments(youtubeId); // 初期動画のコメントを取得
+    console.log("通過");
 }
 
 //再生関数
@@ -167,7 +170,6 @@ function ytSearch(val) {
         .then((data) => data.json())
         .then((obj) => {
             //検索した単語を予測に出す
-            // console.log("通過");
             console.log(obj);
 
             selectVideo.innerHTML = "";
@@ -209,6 +211,26 @@ function ytSearch(val) {
         });
 }
 
+//コメントの取得
+function getComments(videoId) {
+    const key = 'AIzaSyCybbclXaPz6EmjonbiyLUPT8Y332j4hiU';
+    const commentList = document.querySelector('.comment__list');
+    commentList.innerHTML = ""; // 既存のコメントをクリア
+    fetch(`https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${videoId}&key=${key}&maxResults=10`)
+        .then(res => res.json())
+        .then(data => {
+
+            data.items.forEach(item => {
+                const commnetLi = document.createElement('li');
+                const comment = item.snippet.topLevelComment.snippet.textDisplay;
+                commnetLi.classList.add('comment__item');
+                commnetLi.innerHTML = comment;
+
+                commentList.appendChild(commnetLi);
+            });
+        });
+}
+
 //検索時実行
 const ytSearchBtn = document.querySelector('#searchBtn');
 const closeBtn = document.querySelector('.close');
@@ -227,6 +249,3 @@ closeBtn.addEventListener('click', () => {
     closeBtn.style.display = "none"; //閉じるボタンを非表示
     selectVideo.style.display = "none"; // 検索結果を非表示
 });
-
-//todo apiの初期化
-//変更点はkeyの部分を2025-2の鍵に変更してます。
